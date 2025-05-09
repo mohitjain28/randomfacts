@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Facts</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+            padding: 20px;
+            max-width: 90%;
+        }
+        p.small-text {
+            font-size: 0.8em;
+            color: #ccc;
+            margin-top: 10px;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="fact">Loading random fact...</h1>
+    <p class="small-text">Refresh for new fact</p>
+
+    <script>
+        const facts = [
+            "Bananas are berries, but strawberries are not.",
+            "Octopuses have three hearts and blue blood.",
+            "A day on Venus is longer than a year on Venus.",
+            "Sharks existed before trees appeared on Earth.",
+            "Honey never spoils — edible honey has been found in ancient tombs.",
+            "There are more trees on Earth than stars in the Milky Way galaxy.",
+            "A teaspoon of neutron star material weighs about 6 billion tons.",
+            "Hot water freezes faster than cold water — called the Mpemba effect.",
+            "Wombat poop is cube-shaped.",
+            "The Eiffel Tower can grow over 15 cm taller in summer due to heat expansion.",
+            "Mathematicians have discovered a shape called a scutoid in biological structures.",
+            "Lightning strikes Earth about 100 times every second.",
+            "If you could fold a piece of paper 42 times, it would reach the Moon.",
+            "Earthquakes can turn water into gold by squeezing gold out of rocks.",
+            "Saturn’s moon Titan has lakes of liquid methane and ethane.",
+            "Astronauts can grow up to 5 cm taller in space.",
+            "Human DNA is 60% similar to banana DNA.",
+            "The deepest part of the ocean is over 11 km deep — deeper than Mount Everest is tall.",
+            "Butterflies can taste with their feet.",
+            "The Sahara Desert can get snow in winter.",
+            "A day on Earth used to last only 6 hours billions of years ago.",
+            "Cows have best friends and get stressed when separated.",
+            "Mathematics has infinitely many prime numbers — proven by Euclid over 2,000 years ago.",
+            "The universe has no center and no edge.",
+            "Some turtles can breathe through their butts.",
+            "The hottest planet in the solar system is Venus, not Mercury.",
+            "A group of flamingos is called a flamboyance.",
+            "The Amazon River once flowed in the opposite direction.",
+            "Every two minutes, we take more pictures than all of humanity did in the 1800s.",
+            "If you drilled a tunnel through Earth and jumped in, it would take ~42 minutes to emerge on the other side.",
+            "There are more possible chess games than atoms in the observable universe.",
+            "Sloths can hold their breath longer than dolphins.",
+            "Venus rotates clockwise, unlike most other planets.",
+            "A cockroach can live for weeks without its head.",
+            "The Great Wall of China is not visible from space with the naked eye.",
+            "Some metals, like gallium, can melt in your hand.",
+            "There’s a planet made entirely of diamonds — 55 Cancri e.",
+            "Mathematicians have proven the four-color theorem — any map can be colored using just four colors without adjacent regions sharing a color.",
+            "Hawaii is moving closer to Japan at about 10 cm per year.",
+            "Jellyfish existed before dinosaurs.",
+            "There’s a giant cloud of alcohol in space, large enough to fill 400 trillion pints of beer.",
+            "Humans share about 50% of their genes with cabbage.",
+            "Mount Everest grows about 4 mm taller each year.",
+            "The human stomach gets a new lining every 3-4 days.",
+            "Sunsets on Mars appear blue.",
+            "A flea can jump 200 times its body length.",
+            "A single lightning bolt has enough energy to toast 100,000 slices of bread.",
+            "Your body has about 37 trillion cells.",
+            "The human nose can detect over 1 trillion different scents.",
+            "Astronauts’ helmets have a Velcro patch inside so they can scratch their noses.",
+            "There’s a species of jellyfish that is biologically immortal.",
+            "There’s an island in Japan populated only by bunnies.",
+            "The Moon is drifting away from Earth at a rate of 3.8 cm per year.",
+            "Sharks are older than dinosaurs, surviving five mass extinctions.",
+            "Some species of penguins propose to their mates with a pebble.",
+            "Oxford University is older than the Aztec Empire.",
+            "The shortest war in history lasted 38 to 45 minutes between Britain and Zanzibar.",
+            "Cleopatra lived closer in time to the Moon landing than to the construction of the Great Pyramid.",
+            "Rain contains vitamin B12.",
+            "Bamboo can grow up to 91 cm in a single day.",
+            "There’s a spider species named after Harry Potter’s Sorting Hat.",
+            "Octopus mothers starve themselves to death after laying eggs.",
+            "It rains diamonds on Saturn and Jupiter.",
+            "There’s a species of fungus that can control the minds of insects.",
+            "Neutron stars can spin 600 times per second.",
+            "The heart of a blue whale is as big as a small car.",
+            "Human saliva contains a painkiller called opiorphin that is six times more powerful than morphine.",
+            "In 1998, Google was originally called Backrub.",
+            "The Earth’s core is as hot as the surface of the Sun.",
+            "More people have been to the Moon than to the Mariana Trench’s deepest point.",
+            "Space smells like seared steak, according to astronauts.",
+            "Mathematically, the number zero was invented independently in several cultures.",
+            "A day on Mercury lasts 176 Earth days.",
+            "There are more bacteria in your mouth than people on Earth.",
+            "Pineapples take about two years to grow.",
+            "The Milky Way and Andromeda galaxies are on a collision course.",
+            "Some lizards can squirt blood from their eyes as a defense mechanism.",
+            "The fingerprints of a koala are so indistinguishable from humans that they can taint crime scenes.",
+            "The Earth’s magnetic field is shifting at about 10 km per year.",
+            "The Pacific Ocean is shrinking by about 2.5 cm per year.",
+            "The human body contains about 0.2 milligrams of gold, mostly in the blood.",
+            "The Moon once had active volcanoes.",
+            "Bats are the only mammals that can fly.",
+            "The universe is expanding at an accelerating rate.",
+            "In theory, Saturn would float if placed in a large enough body of water.",
+            "The Eiffel Tower can shrink by about 15 cm in cold weather.",
+            "There’s a place in the Pacific Ocean called Point Nemo that’s the farthest point from any land.",
+            "The human eye can distinguish about 10 million different colors.",
+            "The oldest known living organism is a cyanobacterium fossil 3.5 billion years old.",
+            "The longest-living cells in your body are brain cells, which can last a lifetime.",
+            "Blood makes up about 8% of your body weight.",
+            "Sharks can detect one drop of blood in 25 gallons of water.",
+            "The Sun accounts for 99.86% of the mass in our solar system.",
+            "The largest living structure on Earth is the Great Barrier Reef.",
+            "The hottest temperature ever recorded on Earth was 56.7°C (134°F) in Death Valley, California.",
+            "Venus has sulfuric acid rain, but it evaporates before reaching the surface.",
+            "A mantis shrimp can punch with the force of a bullet.",
+            "There are more microplastics in the ocean than stars in the galaxy.",
+            "The largest volcano in the solar system is Olympus Mons on Mars.",
+            "Some fish can change sex during their lifetime.",
+            "A cloud can weigh more than a million pounds.",
+            "The DNA in your body, uncoiled, would stretch from the Earth to Pluto and back — several times."
+        ];
+
+        function showRandomFact() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            document.getElementById('fact').textContent = facts[randomIndex];
+        }
+
+        window.onload = showRandomFact;
+    </script>
+</body>
+</html>
